@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: springdb
+    ports:
+      - "3307:3306"
+
+  app:
+    image: springboot-mysql
+    container_name: springboot-app
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
